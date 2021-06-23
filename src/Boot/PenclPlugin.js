@@ -14,8 +14,8 @@ module.exports = class PenclPlugin {
   constructor() {
     this._config_loaded = false;
 
-    Core.boot.getPluginConfig(this);
-    Core.boot.triggerSync(['init:' + this.name, 'init'], this);
+    Core.getPluginConfig(this);
+    Core.triggerSync(['init:' + this.name, 'init'], this);
   }
 
   /**
@@ -49,7 +49,7 @@ module.exports = class PenclPlugin {
    * @param  {...any} args 
    */
   async hook(name, ...args) {
-    await Core.boot.hook(name, this, ...args);
+    await Core.hook(name, this, ...args);
   }
 
   /**
