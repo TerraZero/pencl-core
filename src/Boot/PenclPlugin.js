@@ -1,4 +1,4 @@
-const Boot = require('../../index').boot;
+const Boot = require('../../index');
 const Reflection = require('pencl-kit/src/Util/Reflection');
 
 module.exports = class PenclPlugin {
@@ -10,8 +10,8 @@ module.exports = class PenclPlugin {
 
   constructor() {
     this._config_loaded = false;
-    Boot.getPluginConfig(this);
-    Boot.triggerSync(['init:' + this.name, 'init'], this);
+    Boot.boot.getPluginConfig(this);
+    Boot.boot.triggerSync(['init:' + this.name, 'init'], this);
   }
 
   /**
