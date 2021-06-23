@@ -6,7 +6,9 @@ module.exports = class PenclBoot {
   constructor(config = null) {
     this.config = config || {};
     this.handler = new Handler();
-    this.plugins = [];
+    this.definitions = [];
+    this.plugins = {};
+
 
     process.on('beforeExit', (...args) => {
       this.triggerSync('exit', ...args);
@@ -19,15 +21,38 @@ module.exports = class PenclBoot {
     }
   }
 
-  addPlugin(name) {
-    this.plugins.push(name);
+  /**
+   * @param {string} name 
+   * @param  {...any} args 
+   * @returns 
+   */
+  addPlugin(name, ...args) {
+    this.definitions.push({ name, args });
     return this;
   }
 
+  /**
+   * @param {string} name 
+   * @returns {import('./PenclPlugin')}
+   */
+  plugin(name) {
+    if (this.plugins[name]) {
+      this.plugins[name];
+    } else {
+      for (const definition of this.definitions) {
+        if (definition.name === name) {
+          this.plugins[name] = require('pencl-' + name)(this, ...definition.args);
+          return this.plugins[name];
+        }
+      }
+    }
+    return null;
+  }
+
   async boot() {
-    for (const plugin of this.plugins) {
+    for (const plugin of this._loading) {
       try {
-        require(plugin + '/pencl.hook')(this);
+        require(plugin.name + '/pencl.hook')(this);
       } catch (e) {}
     }
     await this.trigger('boot', this);
