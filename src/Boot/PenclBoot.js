@@ -27,6 +27,7 @@ module.exports = class PenclBoot {
   }
 
   loadConfig(config) {
+    config = config || {};
     for (const index in config) {
       this.config[index] = config[index];
     }
