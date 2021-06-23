@@ -1,0 +1,23 @@
+{
+  "name": "pencl-core",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TerraZero/pencl-core.git"
+  },
+  "author": "TerraZero",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TerraZero/pencl-core/issues"
+  },
+  "homepage": "https://github.com/TerraZero/pencl-core#readme",
+  "dependencies": {
+    "@types/node": "^15.12.4",
+    "pencl-kit": "git+https://github.com/TerraZero/pencl-kit.git"
+  }
+}
