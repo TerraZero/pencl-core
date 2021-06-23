@@ -14,6 +14,6 @@ module.exports = class Booter {
   static booting(config) {
     this._boot = new PenclBoot(config);
     return this._boot;
-  }  
+  }
 
 }

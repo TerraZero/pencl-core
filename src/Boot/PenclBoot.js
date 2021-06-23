@@ -6,8 +6,6 @@ module.exports = class PenclBoot {
   constructor(config = null) {
     this.config = config || {};
     this.handler = new Handler();
-    this.definitions = [];
-    this.plugins = {};
 
 
     process.on('beforeExit', (...args) => {
@@ -19,34 +17,6 @@ module.exports = class PenclBoot {
     for (const index in config) {
       this.config[index] = config[index];
     }
-  }
-
-  /**
-   * @param {string} name 
-   * @param  {...any} args 
-   * @returns 
-   */
-  addPlugin(name, ...args) {
-    this.definitions.push({ name, args });
-    return this;
-  }
-
-  /**
-   * @param {string} name 
-   * @returns {import('./PenclPlugin')}
-   */
-  plugin(name) {
-    if (this.plugins[name]) {
-      this.plugins[name];
-    } else {
-      for (const definition of this.definitions) {
-        if (definition.name === name) {
-          this.plugins[name] = require('pencl-' + name)(this, ...definition.args);
-          return this.plugins[name];
-        }
-      }
-    }
-    return null;
   }
 
   async boot() {
