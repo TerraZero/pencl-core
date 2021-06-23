@@ -1,4 +1,4 @@
-const Boot = require('../../index');
+const Boot = require('../../index').boot;
 const Reflection = require('pencl-kit/src/Util/Reflection');
 
 module.exports = class PenclPlugin {
