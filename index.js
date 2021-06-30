@@ -16,8 +16,8 @@ class Booting {
 }
 
 module.exports = function() {
-  if (this._instance === undefined) {
-    this._instance = new Booting();
+  if (this._pencl_core === undefined) {
+    this._pencl_core = new Booting();
   }
-  return this._instance;
+  return this._pencl_core;
 }
