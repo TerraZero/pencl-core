@@ -1,6 +1,6 @@
 const PenclBoot = require('./src/Boot/PenclBoot');
 
-module.exports = class Booting {
+class Booting {
 
   static get boot() {
     return this._boot;
@@ -13,4 +13,11 @@ module.exports = class Booting {
     return this._boot;
   }
 
+}
+
+module.exports = function() {
+  if (this._instance === undefined) {
+    this._instance = new Booting();
+  }
+  return this._instance;
 }
