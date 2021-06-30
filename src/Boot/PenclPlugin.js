@@ -1,4 +1,4 @@
-const Core = require('pencl-core').boot;
+const Core = require('pencl-core');
 const Reflection = require('pencl-kit/src/Util/Reflection');
 
 module.exports = class PenclPlugin {
@@ -8,14 +8,16 @@ module.exports = class PenclPlugin {
   get LOG_WARNING() {return 3;};
   get LOG_ERROR() {return 4;};
 
-  /**
-   * @param {import('./PenclBoot')} boot 
-   */
   constructor() {
     this._config_loaded = false;
 
-    Core.getPluginConfig(this);
-    Core.triggerSync(['init:' + this.name, 'init'], this);
+    this.boot.getPluginConfig(this);
+    this.boot.triggerSync(['init:' + this.name, 'init'], this);
+  }
+
+  /** @returns {import('./PenclBoot')} */
+  get boot() {
+    return Core().boot;
   }
 
   /**
@@ -49,7 +51,7 @@ module.exports = class PenclPlugin {
    * @param  {...any} args 
    */
   async hook(name, ...args) {
-    await Core.hook(name, this, ...args);
+    await this.boot.hook(name, this, ...args);
   }
 
   /**
