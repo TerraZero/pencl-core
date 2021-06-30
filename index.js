@@ -2,11 +2,11 @@ const PenclBoot = require('./src/Boot/PenclBoot');
 
 class Booting {
 
-  static get boot() {
+  get boot() {
     return this._boot;
   }
 
-  static booting(path = null, config = null) {
+  booting(path = null, config = null) {
     if (this._boot === undefined) {
       this._boot = new PenclBoot(path, config);
     }
