@@ -18,6 +18,7 @@
   "homepage": "https://github.com/TerraZero/pencl-core#readme",
   "dependencies": {
     "@types/node": "^15.12.4",
-    "pencl-kit": "git+https://github.com/TerraZero/pencl-kit.git"
+    "pencl-kit": "git+https://github.com/TerraZero/pencl-kit.git",
+    "promise-events": "^0.2.4"
   }
 }

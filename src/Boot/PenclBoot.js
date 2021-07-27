@@ -112,7 +112,7 @@ module.exports = class PenclBoot {
   /**
    * @param {import('./PenclPlugin')} plugin 
    */
-   getPluginConfig(plugin) {
+  getPluginConfig(plugin) {
     if (plugin._config_loaded) return plugin.config;
     const config = plugin.config;
     const configs = this.getConfig(plugin.name);

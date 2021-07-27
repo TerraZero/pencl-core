@@ -1,4 +1,5 @@
 const Core = require('pencl-core');
+const PromiseEvents = require('promise-events');
 const Reflection = require('pencl-kit/src/Util/Reflection');
 
 module.exports = class PenclPlugin {
@@ -13,6 +14,7 @@ module.exports = class PenclPlugin {
 
     this.boot.getPluginConfig(this);
     this.boot.triggerSync(['init:' + this.name, 'init'], this);
+    this.handler = new PromiseEvents();
   }
 
   /** @returns {import('./PenclBoot')} */
